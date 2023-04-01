@@ -1,13 +1,109 @@
+.menu {
+    margin: 10px 0px;
+    fontsize: 18px;
+}
+
+.menu-action {
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 10px 0px;
+}
+
+.menu-action:hover {
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+/*above is used*/
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.App {
+    text-align: center;
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    background-color: #282c34;
+}
+
+/* .App-body {
+  background-color: #282c34;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  width: 100%;d
+} */
+
+.wrapper {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px; */
+    display: grid;
+    grid-template-rows: minmax(4rem, auto) 1fr;
+    grid-gap: 10px;
+    border: 1px solid white;
+    padding: 2rem;
+}
+
+.top {
+     
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 100%;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    /* background-color: #0f0; */
+}
+
+.link-list {
+    margin-top: 1rem;
+}
+
+.link {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+}
+
+.link:hover {
+    color: #ade6e6;
 }
