@@ -3,6 +3,7 @@ import axios, { AxiosRequestHeaders } from "axios";
 import React, { ReactNode, useRef, useState } from "react";
 import { Dragger } from "./Dragger";
 import { UploadList } from "./UploadList";
+import { v4 as uuid } from 'uuid';
 import AWS from "aws-sdk";
 
 const accessKeyId = process.env.REACT_APP_S3_KEY;
@@ -132,57 +133,6 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
         setFileList((previousList) => {
             return [_file, ...previousList];
         });
-
-        const formData = new FormData();
-        formData.append(name || "file", file);
-        if (data) {
-            Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
-            });
-        }
-        // axios
-        //     .post(action, formData, {
-        //         headers: {
-        //             ...headers,
-        //             "Content-Type": "multipart/form-data",
-        //         },
-        //         withCredentials,
-        //         onUploadProgress: (e) => {
-        //             let precentage =
-        //                 Math.round((e.loaded * 100) / e.total) || 0;
-        //             if (precentage < 100) {
-        //                 updateFileInFileList(_file, {
-        //                     precentage,
-        //                     status: "uploading",
-        //                 });
-        //             }
-        //         },
-        //     })
-        //     .then((resp) => {
-        //         updateFileInFileList(_file, {
-        //             precentage: 100,
-        //             status: "success",
-        //             resp,
-        //         });
-        //         if (onSuccess) {
-        //             onSuccess(resp.data, file);
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         updateFileInFileList(_file, {
-        //             precentage: 100,
-        //             status: "error",
-        //             err,
-        //         });
-        //         if (onError) {
-        //             onError(err, file);
-        //         }
-        //     })
-        //     .finally(() => {
-        //         if (onChange) {
-        //             onChange(file);
-        //         }
-        //     });
 
         const S3_BUCKET = "team4-file";
         const REGION = "us-west-1";
