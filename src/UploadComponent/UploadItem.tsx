@@ -17,8 +17,6 @@ export interface UploadItemProp {
 
 export const UploadItem : React.FunctionComponent<UploadItemProp> = (props) => {
   const {file, handleDelete, loadingBarColor} = props;
-  // console.log(file.precentage + loadingBarColor);
-  // console.log(loadingBarColor);
   return (
     <FileRow>
       {file.precentage === 100 ? file.status === "success" ? <Completed/> : <Failed/> : <Loading/>}

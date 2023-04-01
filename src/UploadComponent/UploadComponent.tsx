@@ -295,19 +295,4 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
         </>
     );
 };
-
-const UploadButton = styled.div`
-    font-family: sans-serif;
-    font-size: 24px;
-    background-color: white;
-    margin-bottom: 16px;
-    color: black;
-    width: 200px;
-    border: 2px solid #4e1d78;
-    transition-duration: 0.4s;
-    &:hover {
-        background-color: #4e1d78;
-        color: white;
-        cursor: pointer;
-    }
-`;
+ 

@@ -40,23 +40,7 @@ code {
     background-color: #282c34;
 }
 
-/* .App-body {
-  background-color: #282c34;
-  min-height: 100vh;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  width: 100%;d
-} */
-
 .wrapper {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px; */
     display: grid;
     grid-template-rows: minmax(4rem, auto) 1fr;
     grid-gap: 10px;
@@ -89,7 +73,6 @@ code {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
-    /* background-color: #0f0; */
 }
 
 .link-list {

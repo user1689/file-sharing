@@ -5,11 +5,10 @@ import React from "react";
 
 export const LoadingBar : React.FunctionComponent<ProgressBarProps> = (props) => {
   const { value, max, loadingBarColor, width } = props;
-  const color = loadingBarColor || "#4e1d78";
+  const color = loadingBarColor || "#ade6e6";
   return (
     <Container color={loadingBarColor} width={width}>
       <progress value={value} max={max} />
-      {/* <span>{(value / max) * 100}%</span> */}
     </Container>
   );
 };

@@ -34,18 +34,7 @@ export const DownLoadComponent = () => {
             Key: param,
         };
 
-        // myBucket.getObject(getObjectParams, async function (err, data) {
-        //     if (err) {
-        //         console.log("Error getting object: ", err);
-        //     } else {
-        //         console.log(
-        //             "Object retrieved successfully. Content: ",
-        //             data.Body?.toString()
-        //         );
-        //     }
-        // });
-
-         axios({
+        axios({
             url : myBucket.getSignedUrl("getObject", getObjectParams),
             method: 'GET',
             responseType: 'blob'

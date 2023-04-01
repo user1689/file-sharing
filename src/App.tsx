@@ -63,11 +63,6 @@ function App() {
                 <div className="bottom">
                     <div className="left">
                         <UploadComponent
-                            // action="http://localhost:3003/upload"
-                            // headers={{
-                            //     Authorization: "jwt",
-                            //     token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoieGl4aTMiLCJpZCI6IjM3IiwiZXhwIjoxNjc3Mjc5NjExfQ.q9SeNNFqpmkwky-M-OeMW9QU2WaViFxvUcbQcHeMTQw",
-                            // }}
                             defaultFileList={defaultFileList}
                             beforeUpload={renameFile}
                             onError={onError}
