@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UploadComponent, UploadFile } from "./UploadComponent/UploadComponent";
 import "./index.css";
 import { DownLoadComponent } from "./DownLoadComponent/DownLoadComponent";
+import { WrapperFile } from "./types";
 
 function App() {
     const defaultFileList: UploadFile[] | undefined = [];
@@ -44,8 +45,11 @@ function App() {
             } else {
                 newFile = file;
             }
-            const p = new Promise<File>((res, rej) => {
-                res(newFile);
+            const p = new Promise<WrapperFile>((res, rej) => {
+                res({
+                    file: newFile,
+                    originalName : file.name
+                });
             });
             return p;
         }
