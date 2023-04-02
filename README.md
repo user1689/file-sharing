@@ -16,7 +16,7 @@
     }
   ```
   2. create your AWS account and create file name `.env.development` 
-    ```js
+  ```js
     REACT_APP_S3_KEYID=your key id
     REACT_APP_S3_ACCESSKEY=your access key
     REACT_APP_S3_BUCKET=your bucket
@@ -24,6 +24,7 @@
   ```
 
 # More Improvement
+
   - for front end
     - canceling uploading
     - maintaining state in url  
