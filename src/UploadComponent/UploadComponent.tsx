@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import axios, { AxiosRequestHeaders } from "axios";
 import React, { ReactNode, useRef, useState } from "react";
+import axios, { AxiosRequestHeaders } from "axios";
 import { Dragger } from "./Dragger";
 import { UploadList } from "./UploadList";
 import { v4 as uuid } from "uuid";
-import AWS from "aws-sdk";
 import { WrapperFile } from "../types";
+import { notification } from "antd"
+import AWS from "aws-sdk";
 
 const accessKeyId = process.env.REACT_APP_S3_KEYID || "";
 const secretAccessKey = process.env.REACT_APP_S3_ACCESSKEY || "";
@@ -61,17 +61,12 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
     props
 ) => {
     const {
-        action,
         onProgress,
         beforeUpload,
         onSuccess,
         onError,
         onChange,
         onRemove,
-        name,
-        data,
-        headers,
-        withCredentials,
         defaultFileList,
         accept,
         multiple,
@@ -140,7 +135,9 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
     const post = async (wFile: WrapperFile) => {
         const { file, originalName } = wFile;
         if (originalName.lastIndexOf(".") === -1) {
-            alert("please add suffix to you file before upload it");
+            notification.info({
+                message: "Please add suffix to you file before upload it",
+            });
             return;
         }
         let _file: UploadFile = {
@@ -167,7 +164,6 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
 
         const uniqueId = uuid();
         const ext = originalName.substring(originalName.lastIndexOf(".") + 1);
-        console.log(ext);
         const value = btoa(uniqueId.slice(0, 8) + "." + ext);
         localStorage.setItem(file.name, value);
 
@@ -175,7 +171,7 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
             ACL: "public-read",
             Body: file,
             Bucket: s3_bucket,
-            Key: uniqueId.slice(0, 6) + "." + ext,
+            Key: uniqueId.slice(0, 8) + "." + ext,
         };
 
         upload = myBucket.putObject(params);

@@ -4,19 +4,20 @@ import { DownLoadComponent } from "./DownLoadComponent/DownLoadComponent";
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { WrapperFile } from "./types";
 import "./index.css";
+import { notification } from "antd";
 
 function App() {
     const defaultFileList: UploadFile[] | undefined = [];
 
     const onProgress = (p: any, f: any) => {
-        // console.log(p, f);
     };
     const onSuccess = (resp: any, f: any) => {
-        // console.log(f);
         setKeyList((p) => {
             return [f.name, ...p];
         });
-        // console.log(resp, f);
+        notification.success({
+            message: "Upload success",
+        });
     };
     const onError = (e: any, f: any) => {
         console.log("err", e);
@@ -24,8 +25,10 @@ function App() {
     const onChange = (f: any) => {};
     const checkSize = (file: any) => {
         if (file && file instanceof File) {
-            if (((file.size / 1024) / 1024) / 1024 > 5) {
-                alert("file size is too large");
+            if (file.size / 1024 / 1024 / 1024 > 5) {
+                notification.info({
+                    message: "File size should smaller than 5GB",
+                });
                 return false;
             }
             return true;
@@ -49,7 +52,7 @@ function App() {
             const p = new Promise<WrapperFile>((res, rej) => {
                 res({
                     file: newFile,
-                    originalName : file.name
+                    originalName: file.name,
                 });
             });
             return p;
@@ -59,7 +62,7 @@ function App() {
 
     const [keyList, setKeyList] = useState<string[]>([]);
 
-    const handleClick = (e : any) => {
+    const handleClick = (e: any) => {
         const key = localStorage.getItem(e.target.value) || "invalid url!!!";
         navigator.clipboard.writeText(key);
     };
@@ -68,7 +71,7 @@ function App() {
         <div className="App">
             <div className="wrapper">
                 <div className="top">
-                    <DownLoadComponent/>
+                    <DownLoadComponent />
                 </div>
                 <div className="bottom">
                     <div className="left">
@@ -88,7 +91,6 @@ function App() {
                             dragOverBgColor={"#90909042"}
                             dropBoxWidth={"200px"}
                         >
-                            {/* pass your own icon or content here */}
                             <CloudUploadOutlined />
                             <p>Click or Drag file over to upload</p>
                         </UploadComponent>
@@ -97,7 +99,12 @@ function App() {
                         <span>"Click to copy you code for sharing"</span>
                         {keyList.map((e, k) => (
                             <span className="link-list" key={k}>
-                                <input readOnly className="link" value={e} onClick={handleClick} />
+                                <input
+                                    readOnly
+                                    className="link"
+                                    value={e}
+                                    onClick={handleClick}
+                                />
                             </span>
                         ))}
                     </div>

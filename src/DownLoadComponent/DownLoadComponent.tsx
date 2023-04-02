@@ -1,9 +1,9 @@
 import React, { ChangeEvent, createRef, useRef, useState } from "react";
-import { Button, Input, Space } from "antd";
-import styled from "@emotion/styled";
+import { Button, Input, Space, notification } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import AWS from "aws-sdk";
 import axios from "axios";
+import styled from "@emotion/styled";
 
 const accessKeyId = process.env.REACT_APP_S3_KEYID || "";
 const secretAccessKey = process.env.REACT_APP_S3_ACCESSKEY || "";
@@ -37,7 +37,7 @@ export const DownLoadComponent = () => {
         });
 
         const key = atob(param);
-        console.log(key);
+
         const getObjectParams = {
             Bucket: s3_bucket,
             Key: key,
@@ -62,7 +62,9 @@ export const DownLoadComponent = () => {
                 URL.revokeObjectURL(url);
             })
             .catch((err) => {
-                alert("file does not exists");
+                notification.error({
+                    message: "File does not exists",
+                });
             });
     };
     return (

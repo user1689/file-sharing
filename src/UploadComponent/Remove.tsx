@@ -50,11 +50,11 @@ const StyledTrash = styled.i`
 
 interface RemoveProps {
     file: UploadFile;
-    handleDelete : (file : UploadFile) => void;
+    handleDelete: (file: UploadFile) => void;
 }
 
-export const Remove : React.FunctionComponent<RemoveProps> = (props) => {
-    const {file, handleDelete} = props;
+export const Remove: React.FunctionComponent<RemoveProps> = (props) => {
+    const { file, handleDelete } = props;
     return (
         <>
             <StyledTrash onClick={() => handleDelete(file)} icon-role="close" />
