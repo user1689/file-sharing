@@ -17,19 +17,23 @@ function App() {
         // console.log(resp, f);
     };
     const onError = (e: any, f: any) => {
-        // console.log(e, f);
+        console.log("err", e);
     };
     const onChange = (f: any) => {};
     const checkSize = (file: any) => {
         if (file && file instanceof File) {
-            if (file.size / 1024 > 1000) {
+            if (((file.size / 1024) / 1024) / 1024 > 5) {
                 alert("file size is too large");
                 return false;
             }
             return true;
         }
+        return false;
     };
     const renameFile = (file: File) => {
+        if (!checkSize(file)) {
+            return false;
+        }
         if (file && file instanceof File) {
             let newFile: File;
             if (file.name.length > 20) {
@@ -51,7 +55,8 @@ function App() {
     const [keyList, setKeyList] = useState<string[]>([]);
 
     const handleClick = (e : any) => {
-        navigator.clipboard.writeText(e.target.value);
+        const key = localStorage.getItem(e.target.value) || "invalid url!!!";
+        navigator.clipboard.writeText(key);
     };
 
     return (
@@ -70,7 +75,7 @@ function App() {
                             onSuccess={onSuccess}
                             onChange={onChange}
                             multiple={true}
-                            accept={".png"}
+                            accept={"*"}
                             drag={true}
                             originalBorderColor={"white"}
                             dragOverBorderColor={"#ade6e6"}
@@ -83,7 +88,7 @@ function App() {
                         </UploadComponent>
                     </div>
                     <div className="right">
-                        <span>"Click to copy you link for sharing"</span>
+                        <span>"Click to copy you code for sharing"</span>
                         {keyList.map((e, k) => (
                             <span className="link-list" key={k}>
                                 <input readOnly className="link" value={e} onClick={handleClick} />

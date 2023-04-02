@@ -5,8 +5,8 @@ import { DownloadOutlined } from "@ant-design/icons";
 import AWS from "aws-sdk";
 import axios from 'axios';
 
-const accessKeyId = process.env.REACT_APP_S3_KEY;
-const secretAccessKey = process.env.REACT_APP_S3_VALUE;
+const accessKeyId = process.env.REACT_APP_S3_KEYID;
+const secretAccessKey = process.env.REACT_APP_S3_ACCESSKEY;
 
 export const DownLoadComponent = () => {
     const [param, setParam] = useState("");
@@ -29,9 +29,11 @@ export const DownLoadComponent = () => {
             region: REGION,
         });
 
+        const key = atob(param);
+        console.log(key);
         const getObjectParams = {
             Bucket: S3_BUCKET,
-            Key: param,
+            Key: key,
         };
 
         axios({
@@ -43,7 +45,7 @@ export const DownLoadComponent = () => {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = param;
+            a.download = key;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -56,7 +58,7 @@ export const DownLoadComponent = () => {
     return (
         <>
             <Space wrap>
-                <MyInput value={param} onChange={(e) => handleInput(e)} placeholder="Enter your link for dowload"></MyInput>
+                <MyInput value={param} onChange={(e) => handleInput(e)} placeholder="Enter your code for dowload"></MyInput>
                 <MyButton
                     type="link"
                     icon={<DownloadOutlined />}

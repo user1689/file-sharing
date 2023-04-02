@@ -6,8 +6,10 @@ import { UploadList } from "./UploadList";
 import { v4 as uuid } from 'uuid';
 import AWS from "aws-sdk";
 
-const accessKeyId = process.env.REACT_APP_S3_KEY;
-const secretAccessKey = process.env.REACT_APP_S3_VALUE;
+const accessKeyId = process.env.REACT_APP_S3_KEYID;
+const secretAccessKey = process.env.REACT_APP_S3_ACCESSKEY;
+
+if (accessKeyId === "" || secretAccessKey === "") console.log("please config aws s3 env at first!");
 
 export type UploadFileStatus = "ready" | "uploading" | "success" | "error";
 
@@ -75,8 +77,7 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
     const [fileList, setFileList] = useState<UploadFile[]>(
         defaultFileList || []
     );
-    
-
+    let upload : AWS.Request<AWS.S3.PutObjectOutput, AWS.AWSError>;
     const fileInput = useRef<HTMLInputElement>(null);
     const handleClick = () => {
         if (fileInput.current) {
@@ -146,18 +147,23 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
             params: { Bucket: S3_BUCKET },
             region: REGION,
         });
+        
+        const uniqueId = uuid();
+        const ext = _file.raw.name.substring(_file.raw.name.lastIndexOf(".") + 1);
+        console.log(ext);
+        const value = btoa(uniqueId.slice(0,6) + "." + ext);
+        localStorage.setItem(file.name, value);
 
         const params = {
             ACL: "public-read",
             Body: file,
             Bucket: S3_BUCKET,
-            Key: file.name,
+            Key: uniqueId.slice(0,6) + "." + ext,
         };
 
-        const upload = myBucket.putObject(params);
-
-        upload.on("httpUploadProgress", function (progress: any) {
-            console.log("Progress:", progress.loaded, "/", progress.total);
+        upload = myBucket.putObject(params);
+    
+        upload?.on("httpUploadProgress", function (progress: any) {
             let precentage =
                 Math.round((progress.loaded * 100) / progress.total) || 0;
             if (precentage < 100) {
@@ -168,10 +174,8 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
             }
         });
 
-        upload.send((err: any, data: any) => {
+        upload?.send((err: any, data: any) => {
             if (err) {
-                console.log(err);
-
                 updateFileInFileList(_file, {
                     precentage: 100,
                     status: "error",
@@ -181,9 +185,6 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
                     onError(err, file);
                 }
             } else {
-                console.log("Upload completed successfully!");
-                console.log("Response data:", data);
-
                 updateFileInFileList(_file, {
                     precentage: 100,
                     status: "success",
@@ -194,7 +195,7 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
                 }
             }
         });
-
+        
 
     };
     const handleDelete = (file: UploadFile) => {
