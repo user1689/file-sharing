@@ -25,7 +25,8 @@
     - maintaining state in url  
     - using more custom hooks eg: useHttp(), useDebounce(), etc
     - extacting duplicate code eg: create Context for sharing variables
-  - connect to backend
+  - for backend
+    - securing AWS S3 uploads using presigned URLs
     - storing the download code into backend, when user use download code for downloading, retrieve download code from db and return the real key in AWS s3
     - in the situation like request is too much
       - add cache eg: redis reducing response time when user accessing, CDN is also a good choice
