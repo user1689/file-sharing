@@ -1,19 +1,10 @@
 # How To Run it
-  1. add a folder name `.cert`, make your ssl cert in this folder or you can edit the `scripts` in package.json for start 
+  1. add a folder name `.cert`, make your ssl cert in this folder
   ```js
     - file-sharing
       - .cert
         - cert.pem
         - key.pem
-
-    or
-
-    "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject"
-    }
   ```
   2. create your AWS account and create file name `.env.development` 
   ```js
