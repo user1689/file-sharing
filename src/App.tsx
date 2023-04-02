@@ -96,7 +96,7 @@ function App() {
                         </UploadComponent>
                     </div>
                     <div className="right">
-                        <span>"Click to copy you code for sharing"</span>
+                        <span>"Click to copy your code for sharing"</span>
                         {keyList.map((e, k) => (
                             <span className="link-list" key={k}>
                                 <input

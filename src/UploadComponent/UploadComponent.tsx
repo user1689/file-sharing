@@ -136,7 +136,7 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
         const { file, originalName } = wFile;
         if (originalName.lastIndexOf(".") === -1) {
             notification.info({
-                message: "Please add suffix to you file before upload it",
+                message: "Please add suffix to your file before upload it",
             });
             return;
         }
