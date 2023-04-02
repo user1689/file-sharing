@@ -6,8 +6,11 @@
         - cert.pem
         - key.pem
   ```
-  2. create your AWS account and create file name `.env.development` 
+  2. create your AWS account and create file name `.env.development` under `file-sharing`
   ```js
+    - file-shraing
+      - .env.development
+
     REACT_APP_S3_KEYID=your key id
     REACT_APP_S3_ACCESSKEY=your access key
     REACT_APP_S3_BUCKET=your bucket
