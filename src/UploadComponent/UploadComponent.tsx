@@ -4,7 +4,7 @@ import { Dragger } from "./Dragger";
 import { UploadList } from "./UploadList";
 import { v4 as uuid } from "uuid";
 import { WrapperFile } from "../types";
-import { notification } from "antd"
+import { notification } from "antd";
 import AWS from "aws-sdk";
 
 const accessKeyId = process.env.REACT_APP_S3_KEYID || "";
@@ -210,6 +210,9 @@ export const UploadComponent: React.FunctionComponent<UploadProps> = (
         });
     };
     const handleDelete = (file: UploadFile) => {
+        {
+            /* TODO: Cancel upload */
+        }
         setFileList((previousList) => {
             return fileList.filter((e) => {
                 if (e.fid === file.fid) {

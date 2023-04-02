@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# How To Run it
+  1. add a folder name `.cert`, make your ssl cert in this folder or you can edit the `scripts` in package.json for start 
+  ```js
+    - file-sharing
+      - .cert
+        - cert.pem
+        - key.pem
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    or
 
-## Available Scripts
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    }
+  ```
+  2. create your AWS account and create file name `.env.development` 
+    ```js
+    REACT_APP_S3_KEYID=your key id
+    REACT_APP_S3_ACCESSKEY=your access key
+    REACT_APP_S3_BUCKET=your bucket
+    REACT_APP_S3_REGION=your region
+  ```
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# More Improvement
+  - for front end
+    - canceling uploading
+    - maintaining state in url  
+    - using more custom hooks eg: useHttp(), useDebounce(), etc
+    - extacting duplicate code eg: create Context for sharing variables
+  - connect to backend
+    - storing the download code into backend, when user use download code for downloading, retrieve download code from db and return the real key in AWS s3
+    - in the situation like request is too much
+      - add cache eg: redis reducing response time when user accessing, CDN is also a good choice
+      - scaling db, use consistent hash for store download code indexing 
+  
+  

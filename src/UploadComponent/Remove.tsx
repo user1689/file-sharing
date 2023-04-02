@@ -55,9 +55,5 @@ interface RemoveProps {
 
 export const Remove: React.FunctionComponent<RemoveProps> = (props) => {
     const { file, handleDelete } = props;
-    return (
-        <>
-            <StyledTrash onClick={() => handleDelete(file)} icon-role="close" />
-        </>
-    );
+    return <>{/* TODO: Cancel upload */}</>;
 };
