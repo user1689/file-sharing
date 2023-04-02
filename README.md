@@ -13,6 +13,7 @@
     REACT_APP_S3_BUCKET=your bucket
     REACT_APP_S3_REGION=your region
   ```
+  contact me if you need help: onlyfresh1689@gmail.com
 
 # More Improvement
 
@@ -27,4 +28,7 @@
       - add cache eg: redis reducing response time when user accessing, CDN is also a good choice
       - scaling db, use consistent hash for store download code indexing 
   
-  
+# Snapshot
+![alt text](./img/file-sharing-snapshot.png)
+
+ 
