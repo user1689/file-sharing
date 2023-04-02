@@ -1,22 +1,7 @@
-.menu {
-    margin: 10px 0px;
-    fontsize: 18px;
+* {
+    margin: 0;
+    padding: 0;
 }
-
-.menu-action {
-    background-color: white;
-    color: black;
-    border-radius: 4px;
-    padding: 5px 10px;
-    margin: 10px 0px;
-}
-
-.menu-action:hover {
-    transform: scale(1.05);
-    text-decoration: underline;
-}
-
-/*above is used*/
 
 body {
     margin: 0;
@@ -25,11 +10,6 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-        monospace;
 }
 
 .App {
@@ -49,7 +29,6 @@ code {
 }
 
 .top {
-     
 }
 
 .left {

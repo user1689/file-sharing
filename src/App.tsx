@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { UploadComponent, UploadFile } from "./UploadComponent/UploadComponent";
-import "./index.css";
 import { DownLoadComponent } from "./DownLoadComponent/DownLoadComponent";
+import { CloudUploadOutlined } from "@ant-design/icons";
 import { WrapperFile } from "./types";
+import "./index.css";
 
 function App() {
     const defaultFileList: UploadFile[] | undefined = [];
@@ -88,6 +89,7 @@ function App() {
                             dropBoxWidth={"200px"}
                         >
                             {/* pass your own icon or content here */}
+                            <CloudUploadOutlined />
                             <p>Click or Drag file over to upload</p>
                         </UploadComponent>
                     </div>

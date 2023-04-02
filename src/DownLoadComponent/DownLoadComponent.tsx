@@ -10,11 +10,6 @@ const secretAccessKey = process.env.REACT_APP_S3_ACCESSKEY || "";
 const s3_bucket = process.env.REACT_APP_S3_BUCKET || "";
 const region = process.env.REACT_APP_S3_REGION || "";
 
-console.log(accessKeyId);
-console.log(secretAccessKey);
-console.log(s3_bucket);
-console.log(region);
-
 if (
     s3_bucket === "" ||
     region === "" ||
