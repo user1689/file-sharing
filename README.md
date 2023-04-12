@@ -32,7 +32,7 @@
       - add cache eg: redis reducing response time when user accessing, CDN is also a good choice
       - scaling db, use consistent hash for store download code indexing 
   - for test 
-    - write test using lib eg: Jest 
+    - write a component test  
   
 # Snapshot
 ![alt text](./img/file-sharing-snapshot.png)
